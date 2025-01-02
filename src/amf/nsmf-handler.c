@@ -22,6 +22,8 @@
 #include "ngap-path.h"
 #include "sbi-path.h"
 
+#include "monitoring/monitoring.h"
+
 #include "gmm-build.h"
 
 int amf_nsmf_pdusession_handle_create_sm_context(
@@ -44,6 +46,8 @@ int amf_nsmf_pdusession_handle_create_sm_context(
         ogs_error("UE(amf_ue) Context has already been removed");
         return OGS_ERROR;
     }
+
+    monitoring_n11_attach_report(amf_ue->nr_cgi.cell_id, amf_ue->nr_tai.tac.v, &amf_ue->nr_cgi.plmn_id, amf_ue->supi+5, amf_ue->imeisv_bcd);
 
     ran_ue = ran_ue_find_by_id(sess->ran_ue_id);
     if (!ran_ue) {

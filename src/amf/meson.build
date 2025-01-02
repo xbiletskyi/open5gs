@@ -78,7 +78,8 @@ libamf_dep = declare_dependency(
                     libsctp_dep,
                     libngap_dep,
                     libnas_5gs_dep,
-                    libsbi_dep])
+                    libsbi_dep,
+                    libmonitoring_dep])
 
 amf_sources = files('''
     app.c
